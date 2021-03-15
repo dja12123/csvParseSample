@@ -21,9 +21,9 @@ public class EQDataLoader
 		this.data = new HashSet<>();
 	}
 
-	public synchronized void storeData(InputStream file) throws Exception
+	public synchronized void storeData(InputStream stream) throws Exception
 	{
-		InputStreamReader br = new InputStreamReader(file);
+		InputStreamReader br = new InputStreamReader(stream, "UTF-8");
 		CSVReader reader = new CSVReader(br);
 		List<EarthQuakeData> beans = new CsvToBeanBuilder<EarthQuakeData>(reader).withType(EarthQuakeData.class).build()
 				.parse();
