@@ -3,10 +3,8 @@
 
 CSV파일을 단 4줄로 DTO로 만드는 방법
 
-FileWriter writer = new FileWriter(file);
-
-StatefulBeanToCsv<EarthQuakeData> beanToCsv = new StatefulBeanToCsvBuilder<EarthQuakeData>(writer).build();
-
-beanToCsv.write(this.data.iterator());
-
-writer.close();
+		CSVReader reader = new CSVReader(br);
+		List<EarthQuakeData> beans = new CsvToBeanBuilder<EarthQuakeData>(reader).withType(EarthQuakeData.class).build()
+				.parse();
+		this.data.addAll(beans);
+		reader.close();
